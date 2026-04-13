@@ -1,60 +1,122 @@
 <!DOCTYPE html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Love Sanctuary 💕</title>
 
 <style>
-body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background: radial-gradient(circle, #1a1a2e, #0f0f1a);
-  color: white;
-  text-align: center;
+
+/* RESET */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+
+/* BACKGROUND */
+body{
+  height:100vh;
+  background: radial-gradient(circle at top, #ff4da6, #1a001f);
+  color:white;
+  overflow:hidden;
 }
 
 /* LOGIN */
-.login-container {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.login-container{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
 }
 
-.card {
-  background: rgba(255,255,255,0.08);
-  padding: 40px;
-  border-radius: 25px;
+.card{
+  background:rgba(255,255,255,0.08);
+  backdrop-filter:blur(20px);
+  padding:40px;
+  border-radius:25px;
+  box-shadow:0 0 40px rgba(255,0,128,0.4);
+  text-align:center;
 }
 
-button {
-  margin-top: 15px;
-  padding: 12px 30px;
-  border-radius: 25px;
-  border: none;
-  background: pink;
-  color: black;
+input{
+  padding:12px;
+  border:none;
+  border-radius:10px;
+  margin-top:10px;
+}
+
+button{
+  margin-top:15px;
+  padding:12px 30px;
+  border:none;
+  border-radius:25px;
+  background:linear-gradient(45deg,#ff4da6,#ff0066);
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+  transition:0.3s;
+}
+button:hover{
+  transform:scale(1.1);
 }
 
 /* MAIN */
-#main { display:none; }
+#main{
+  display:none;
+  text-align:center;
+  padding-top:40px;
+}
 
-img {
-  width:250px;
+/* GLOW NAME */
+.glow{
+  font-size:36px;
+  font-weight:bold;
+  background:linear-gradient(90deg,#fff,#ff99cc,#ff1a8c);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  text-shadow:
+    0 0 10px rgba(255,0,128,0.8),
+    0 0 20px rgba(255,0,128,0.6),
+    0 0 40px rgba(255,0,128,0.5);
+  animation:glowMove 3s linear infinite;
+}
+
+@keyframes glowMove{
+  0%{background-position:0%;}
+  100%{background-position:200%;}
+}
+
+/* SLIDESHOW */
+img{
+  width:260px;
   border-radius:20px;
   margin-top:20px;
+  box-shadow:0 0 30px pink;
+  transition:opacity 1s ease;
+}
+
+/* MESSAGE */
+h2{
+  margin-top:20px;
+}
+p{
+  margin-top:10px;
 }
 
 /* HEART RAIN */
-.heart {
-  position: fixed;
-  top: -10px;
-  color: pink;
-  animation: fall linear forwards;
+.heart{
+  position:fixed;
+  top:-10px;
+  color:pink;
+  animation:fall linear forwards;
 }
-@keyframes fall {
-  to { transform: translateY(110vh); opacity:0; }
+@keyframes fall{
+  to{transform:translateY(110vh);opacity:0;}
 }
+
 </style>
 </head>
 
@@ -64,7 +126,7 @@ img {
 <div class="login-container" id="login">
   <div class="card">
     <h2>Private Love Space 💕</h2>
-    <input type="password" id="password"><br>
+    <input type="password" id="password" placeholder="Enter Secret Code"><br>
     <button onclick="login()">Unlock 🔐</button>
     <p id="error"></p>
   </div>
@@ -72,53 +134,65 @@ img {
 
 <!-- MAIN -->
 <div id="main">
-  <h1>Welcome ❤️</h1>
+
+  <h1 class="glow">
+    Welcome AAKASH ❤️ NANDANI
+  </h1>
 
   <!-- SLIDESHOW -->
   <img id="slideshow" src="photo1.jpg">
 
-  <p>You are my everything ❤️</p>
+  <h2>💌 Message</h2>
+  <p>You are my happiness, my everything ,my jaaaan❤️</p>
 
+  <!-- BUTTONS -->
   <button onclick="showSurprise()">Tap for Surprise 🎁</button>
   <button onclick="openGift()">🎁 Open Gift</button>
 
   <p id="surprise" style="display:none;color:pink;">
-    I love you forever 💖
+    I love you forever NANDANI JI 💖
   </p>
+
 </div>
 
 <script>
 
-// LOGIN
+/* LOGIN */
 function login(){
-  let pass = document.getElementById('password').value;
-  if(pass === "AAKASHNANDANI"){
-    document.getElementById('login').style.display='none';
-    document.getElementById('main').style.display='block';
+  let pass=document.getElementById("password").value;
+  if(pass==="AAKASHNANDANI"){
+    document.getElementById("login").style.display="none";
+    document.getElementById("main").style.display="block";
   } else {
-    document.getElementById('error').innerText="Wrong password";
+    document.getElementById("error").innerText="Wrong password 😢";
   }
 }
 
-// SURPRISE
+/* SURPRISE */
 function showSurprise(){
-  document.getElementById('surprise').style.display='block';
+  document.getElementById("surprise").style.display="block";
 }
 
-// OPEN GIFT
+/* OPEN GIFT */
 function openGift(){
   window.location.href="gift.html";
 }
 
-// SLIDESHOW
+/* SLIDESHOW */
 const photos=["photo1.jpg","photo2.jpg","photo3.jpg"];
 let i=0;
+
 setInterval(()=>{
   i=(i+1)%photos.length;
-  document.getElementById("slideshow").src=photos[i];
+  const img=document.getElementById("slideshow");
+  img.style.opacity=0;
+  setTimeout(()=>{
+    img.src=photos[i];
+    img.style.opacity=1;
+  },500);
 },3000);
 
-// HEART RAIN
+/* HEART RAIN */
 function createHeart(){
   const heart=document.createElement("div");
   heart.classList.add("heart");
