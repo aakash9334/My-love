@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Love Sanctuary 💕</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: radial-gradient(circle, #1a1a2e, #0f0f1a);
+  color: white;
+  text-align: center;
+}
+
+/* LOGIN */
+.login-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  background: rgba(255,255,255,0.08);
+  padding: 40px;
+  border-radius: 25px;
+}
+
+button {
+  margin-top: 15px;
+  padding: 12px 30px;
+  border-radius: 25px;
+  border: none;
+  background: pink;
+  color: black;
+}
+
+/* MAIN */
+#main { display:none; }
+
+img {
+  width:250px;
+  border-radius:20px;
+  margin-top:20px;
+}
+
+/* HEART RAIN */
+.heart {
+  position: fixed;
+  top: -10px;
+  color: pink;
+  animation: fall linear forwards;
+}
+@keyframes fall {
+  to { transform: translateY(110vh); opacity:0; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<div class="login-container" id="login">
+  <div class="card">
+    <h2>Private Love Space 💕</h2>
+    <input type="password" id="password"><br>
+    <button onclick="login()">Unlock 🔐</button>
+    <p id="error"></p>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div id="main">
+  <h1>Welcome ❤️</h1>
+
+  <!-- SLIDESHOW -->
+  <img id="slideshow" src="photo1.jpg">
+
+  <p>You are my everything ❤️</p>
+
+  <button onclick="showSurprise()">Tap for Surprise 🎁</button>
+  <button onclick="openGift()">🎁 Open Gift</button>
+
+  <p id="surprise" style="display:none;color:pink;">
+    I love you forever 💖
+  </p>
+</div>
+
+<script>
+
+// LOGIN
+function login(){
+  let pass = document.getElementById('password').value;
+  if(pass === "AAKASHNANDANI"){
+    document.getElementById('login').style.display='none';
+    document.getElementById('main').style.display='block';
+  } else {
+    document.getElementById('error').innerText="Wrong password";
+  }
+}
+
+// SURPRISE
+function showSurprise(){
+  document.getElementById('surprise').style.display='block';
+}
+
+// OPEN GIFT
+function openGift(){
+  window.location.href="gift.html";
+}
+
+// SLIDESHOW
+const photos=["photo1.jpg","photo2.jpg","photo3.jpg"];
+let i=0;
+setInterval(()=>{
+  i=(i+1)%photos.length;
+  document.getElementById("slideshow").src=photos[i];
+},3000);
+
+// HEART RAIN
+function createHeart(){
+  const heart=document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerText="💖";
+  heart.style.left=Math.random()*100+"vw";
+  heart.style.animationDuration=(3+Math.random()*3)+"s";
+  document.body.appendChild(heart);
+  setTimeout(()=>heart.remove(),6000);
+}
+setInterval(createHeart,300);
+
+</script>
+
+</body>
+</html>
